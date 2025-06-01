@@ -1,0 +1,67 @@
+/* Override Prism.js default styles */
+pre[class*="language-"],
+code[class*="language-"] {
+  color: theme('colors.foreground');
+  background: none;
+  text-shadow: none;
+  font-family: theme('fontFamily.mono');
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  tab-size: 2;
+  hyphens: none;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: theme('colors.foreground' / 0.5);
+}
+
+.token.punctuation {
+  color: theme('colors.foreground' / 0.7);
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: theme('colors.emerald.400');
+}
+
+.token.string {
+  color: theme('colors.emerald.300');
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: theme('colors.foreground');
+  background: none;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: theme('colors.emerald.500');
+}
+
+.token.function,
+.token.class-name {
+  color: theme('colors.emerald.400');
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: theme('colors.orange.400');
+} 

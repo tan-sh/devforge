@@ -1,26 +1,167 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 230 35% 7%;
+    --foreground: 210 40% 98%;
+    --card: 230 35% 7%;
+    --card-foreground: 210 40% 98%;
+    --popover: 230 35% 7%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 224 76% 48%;
+    --radius: 0.5rem;
+
+    /* Custom properties for animations */
+    --glow-primary: 217 91% 60%;
+    --glow-secondary: 199 89% 48%;
+    --neon-shadow: 0 0 10px hsl(var(--primary)), 
+                   0 0 20px hsl(var(--primary) / 0.5),
+                   0 0 30px hsl(var(--primary) / 0.3);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))] selection:bg-primary/20;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image: 
+      radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 0% 100%, hsl(var(--glow-secondary) / 0.1) 0%, transparent 50%);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full transition-colors hover:bg-primary/40;
+  }
+}
+
+@layer components {
+  /* Cyberpunk-style button */
+  .btn-cyber {
+    @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden rounded-md 
+           bg-background border border-primary/50 text-foreground font-medium
+           transition-all duration-300 hover:border-primary/100 hover:scale-[1.02]
+           focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-[0.98];
+  }
+
+  .btn-cyber::before {
+    content: '';
+    @apply absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent 
+           via-primary/20 to-transparent skew-x-[-20deg] transition-transform duration-700;
+  }
+
+  .btn-cyber:hover::before {
+    @apply translate-x-[100%];
+  }
+
+  /* Glowing card effect */
+  .card-glow {
+    @apply relative bg-secondary/40 backdrop-blur-xl rounded-lg border border-border/50
+           transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,0,0,0.3)];
+  }
+
+  .card-glow::before {
+    content: '';
+    @apply absolute inset-[-1px] rounded-lg bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0
+           opacity-0 transition-opacity duration-300 -z-10;
+  }
+
+  .card-glow:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Neon text effect */
+  .text-neon {
+    @apply relative text-primary transition-all duration-300;
+    text-shadow: var(--neon-shadow);
+  }
+
+  /* Cyber grid background */
+  .cyber-grid {
+    @apply absolute inset-0 -z-10;
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, hsl(var(--border) / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.1) 1px, transparent 1px);
+    mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+  }
+
+  /* Animated border */
+  .border-glow {
+    @apply relative rounded-lg p-[1px] bg-gradient-to-r from-primary via-primary/50 to-primary
+           before:absolute before:inset-0 before:rounded-lg before:p-[1px]
+           before:bg-gradient-to-r before:from-primary before:via-primary/50 before:to-primary
+           before:animate-border-flow;
+  }
+
+  /* Glass panel effect */
+  .glass-panel {
+    @apply relative backdrop-blur-md bg-white/5 rounded-lg border border-white/10
+           shadow-[0_8px_32px_rgba(0,0,0,0.37)] transition-all duration-300;
+  }
+
+  .glass-panel::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg bg-gradient-to-br from-white/5 to-white/0
+           opacity-0 transition-opacity duration-300;
+  }
+
+  .glass-panel:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Hover underline animation */
+  .hover-underline {
+    @apply relative inline-flex;
+  }
+
+  .hover-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-[2px] bg-primary
+           transition-all duration-300 ease-out;
+  }
+
+  .hover-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+@keyframes border-flow {
+  0%, 100% {
+    clip-path: inset(0 0 98% 0);
+  }
+  25% {
+    clip-path: inset(0 98% 0 0);
+  }
+  50% {
+    clip-path: inset(98% 0 0 0);
+  }
+  75% {
+    clip-path: inset(0 0 0 98%);
+  }
 }
