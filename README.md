@@ -2,6 +2,8 @@
 
 DevForge is an all-in-one developer toolkit for the modern web, providing a collection of essential utilities and tools for developers. Built with Next.js 14, TypeScript, and Tailwind CSS, it offers an intuitive interface for common development tasks.
 
+🌐 **Live Site**: [https://devforgetools.netlify.app/](https://devforgetools.netlify.app/)
+
 ## 🛠️ Features
 
 - **JSON Formatter**: Format, validate, and analyze JSON data with syntax highlighting

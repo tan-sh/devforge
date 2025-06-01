@@ -93,7 +93,7 @@ export function Navigation() {
               </Link>
             ))}
             <a
-              href="https://github.com/yourusername/devforge"
+              href="https://github.com/tan-sh/devforge"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative ml-4 px-4 py-2 text-sm text-foreground/80 hover:text-primary transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 flex items-center gap-2"
@@ -146,7 +146,7 @@ export function Navigation() {
               </Link>
             ))}
             <a
-              href="https://github.com/yourusername/devforge"
+              href="https://github.com/tan-sh/devforge"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 text-sm text-foreground/80 hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
